@@ -1,16 +1,25 @@
 global main
 main:
-    mov rax, 0x646c726f77206f
-    push rax
-    mov rax, 0x6c6c6568
-    push rax
+
+    mov rdi, 9
+    call write_digit
+    ret
+
+
+write_digit:
+
+    push rbp
+    mov rbp, rsp
+
+    add rdi, 0x30
+    push rdi
 
     mov rax, 1
     mov rdi, 1
     mov rsi, rsp
-    mov rdx, 11
+    mov rdx, 1
     syscall
 
-    mov rax, 60
-    mov rdi, 0
-    syscall
+    add rsp, 8
+    pop rbp
+    ret
